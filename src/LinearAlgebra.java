@@ -1,4 +1,140 @@
 public class LinearAlgebra {
+//Alisson
+     public static Matrix transpose(Matrix a) {
+        int rows = a.getRows();
+        int cols = a.getCols();
+        double[][] res = new double[cols][rows];
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= cols; j++) {
+                res[j - 1][i - 1] = a.get(i, j);
+            }
+        }
+        return new Matrix(cols, rows, res);
+    }
+
+     
+        public static Matrix transpose(Vector a) {
+        int dim = a.getDim();
+        double[][] res = new double[1][dim];
+
+        for (int i = 1; i <= dim; i++) {
+            res[0][i - 1] = a.get(i);
+        }
+        return new Matrix(1, dim, res);
+    }
+
+
+        public static Matrix sum(Matrix a, Matrix b) {
+        if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+            System.out.println("Erro: As matrizes devem ter as mesmas dimensões.");
+            return null;
+        }
+
+        int rows = a.getRows();
+        int cols = a.getCols();
+        double[][] res = new double[rows][cols];
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= cols; j++) {
+                res[i - 1][j - 1] = a.get(i, j) + b.get(i, j);
+            }
+        }
+        return new Matrix(rows, cols, res);
+    }
+
+        public static Vector sum(Vector a, Vector b) {
+        if (a.getDim() != b.getDim()) {
+            System.out.println("Erro: Os vetores devem ter a mesma dimensão.");
+            return null;
+        }
+
+        int dim = a.getDim();
+        double[] res = new double[dim];
+
+        for (int i = 1; i <= dim; i++) {
+            res[i - 1] = a.get(i) + b.get(i);
+        }
+        return new Vector(res, dim);
+    }
+
+
+
+        public static Matrix times(Matrix a, Matrix b) {
+        if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+            System.out.println("Erro: As matrizes devem ter as mesmas dimensões.");
+            return null;
+        }
+
+        int rows = a.getRows();
+        int cols = a.getCols();
+        double[][] res = new double[rows][cols];
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= cols; j++) {
+                res[i - 1][j - 1] = a.get(i, j) * b.get(i, j);
+            }
+        }
+        return new Matrix(rows, cols, res);
+    }
+
+
+
+      public static Vector times(Vector a, Vector b) {
+        if (a.getDim() != b.getDim()) {
+            System.out.println("Erro: Os vetores devem ter a mesma dimensão.");
+            return null;
+        }
+
+        int dim = a.getDim();
+        double[] res = new double[dim];
+
+        for (int i = 1; i <= dim; i++) {
+            res[i - 1] = a.get(i) * b.get(i);
+        }
+        return new Vector(res, dim);
+    }
+
+
+
+        public static Matrix times(double a, Matrix b) {
+        int rows = b.getRows();
+        int cols = b.getCols();
+        double[][] res = new double[rows][cols];
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= cols; j++) {
+                res[i - 1][j - 1] = a * b.get(i, j);
+            }
+        }
+        return new Matrix(rows, cols, res);
+    }
+
+
+
+       public static Matrix times(Matrix a, double b) {
+        return times(b, a);
+    }
+
+
+
+        public static Vector times(double a, Vector b) {
+        int dim = b.getDim();
+        double[] res = new double[dim];
+
+        for (int i = 1; i <= dim; i++) {
+            res[i - 1] = a * b.get(i);
+        }
+        return new Vector(res, dim);
+    }
+
+
+
+        public static Vector times(Vector a, double b) {
+        return times(b, a);
+    }
+}
+
      //parte do Enzo
      public static Matrix dot(Matrix a, Matrix b) 
         if (a.getCols() != b.getRows()) {
